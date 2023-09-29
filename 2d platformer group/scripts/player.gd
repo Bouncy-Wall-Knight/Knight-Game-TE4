@@ -76,7 +76,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") and (is_on_floor()):
 		hold_jump = true
 		
-	if Input.is_action_just_released("Jump"):
+	if Input.is_action_just_released("Jump") and (is_on_floor()):
 		velocity.y -= charge
 		hold_jump = false
 		charge = min_jump
