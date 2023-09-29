@@ -11,6 +11,5 @@ func _ready():
 
 func _process(_delta):
 	if player != null:
-		print(player.position)
 		if player.position.y > 200:
 			player.set_position(Vector2(-35, -40))
