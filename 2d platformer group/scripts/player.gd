@@ -38,6 +38,7 @@ extends CharacterBody2D
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var cs2d = $CollisionShape2D
+@onready var charge_bar = $charge_bar
 var jumps_air = 1
 var hold_jump = false
 var charge = 0
@@ -45,6 +46,7 @@ var x_direction = 1
 var x_speed = 0
 var stopped = false
 func _physics_process(delta):
+	charge_bar.value = 100*charge/max_jump
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("Move_left"):
@@ -73,6 +75,10 @@ func _physics_process(delta):
 		charge += jump_force
 		if charge > max_jump:
 			charge = max_jump
+		charge_bar.visible = true
+	else:
+		charge_bar.visible = false
+			
 	if Input.is_action_just_pressed("Jump") and (is_on_floor()):
 		hold_jump = true
 		

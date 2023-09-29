@@ -729,6 +729,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 z_index = 1
 position = Vector2(-35, -32)
 scale = Vector2(0.8, 0.572)
+max_jump = 350
 
 [node name="platform" type="StaticBody2D" parent="."]
 

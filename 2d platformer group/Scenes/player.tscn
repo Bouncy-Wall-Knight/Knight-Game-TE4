@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df8oosflauk48"]
+[gd_scene load_steps=16 format=3 uid="uid://df8oosflauk48"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_22ioi"]
 [ext_resource type="Texture2D" uid="uid://e7urpujgmpdn" path="res://assests/textures/_Idle.png" id="2_8efs6"]
@@ -335,6 +335,8 @@ _data = {
 "run": SubResource("Animation_o2rqu")
 }
 
+[sub_resource type="Theme" id="Theme_2sl46"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(-25, -16)
 script = ExtResource("1_22ioi")
@@ -357,3 +359,12 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_he5pe")
 }
+
+[node name="charge_bar" type="ProgressBar" parent="."]
+offset_left = -34.0
+offset_top = 56.0
+offset_right = 104.0
+offset_bottom = 83.0
+scale = Vector2(0.5, 0.5)
+localize_numeral_system = false
+theme = SubResource("Theme_2sl46")
