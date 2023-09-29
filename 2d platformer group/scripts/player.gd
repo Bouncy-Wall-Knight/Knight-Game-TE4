@@ -33,7 +33,7 @@ extends CharacterBody2D
 @export var gravity =  10
 @export var jump_force = 5
 @export var max_jump = 1000
-@export var min_jump = 50
+@export var min_jump = 1
 @export var bounce = 20
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -78,20 +78,20 @@ func _physics_process(delta):
 		charge_bar.visible = true
 	else:
 		charge_bar.visible = false
+	if is_on_floor():
+		if Input.is_action_just_pressed("Jump"):
+			hold_jump = true
 			
-	if Input.is_action_just_pressed("Jump") and (is_on_floor()):
-		hold_jump = true
-		
-	if Input.is_action_just_released("Jump") and (is_on_floor()):
-		if Input.is_key_pressed(KEY_SHIFT):
-			velocity.y -= charge*0.6
-			x_speed = speed * 2
-		else:
-			velocity.y -= charge
-			x_speed = speed
-		hold_jump = false
-		charge = min_jump
-		stopped = false
+		if Input.is_action_just_released("Jump") and hold_jump == true:
+			if Input.is_key_pressed(KEY_SHIFT):
+				velocity.y -= charge*0.6
+				x_speed = speed * 2
+			else:
+				velocity.y -= charge
+				x_speed = speed
+			hold_jump = false
+			charge = min_jump
+			stopped = false
 		
 	if x_direction != 0:
 		sprite.flip_h =  (x_direction == -1)
