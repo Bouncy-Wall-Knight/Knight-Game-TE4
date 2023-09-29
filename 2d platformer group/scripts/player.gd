@@ -83,10 +83,14 @@ func _physics_process(delta):
 		hold_jump = true
 		
 	if Input.is_action_just_released("Jump") and (is_on_floor()):
-		velocity.y -= charge
+		if Input.is_key_pressed(KEY_SHIFT):
+			velocity.y -= charge*0.6
+			x_speed = speed * 2
+		else:
+			velocity.y -= charge
+			x_speed = speed
 		hold_jump = false
 		charge = min_jump
-		x_speed = speed
 		stopped = false
 		
 	if x_direction != 0:
