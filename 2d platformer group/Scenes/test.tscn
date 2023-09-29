@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuu1tgwbo5xif"]
+[gd_scene load_steps=12 format=3 uid="uid://cuu1tgwbo5xif"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_rol8y"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_ee18p"]
 [ext_resource type="Texture2D" uid="uid://boa3nrm22da0i" path="res://sets/sheet.png" id="3_l7juh"]
 [ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="4_w48a7"]
+[ext_resource type="Script" path="res://scripts/oob.gd" id="5_yro2g"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_cl68h"]
 size = Vector2(1000, 100)
@@ -726,8 +727,9 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="World" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_rol8y")]
+unique_name_in_owner = true
 z_index = 1
-position = Vector2(-35, -32)
+position = Vector2(-35, -40)
 scale = Vector2(0.8, 0.572)
 max_jump = 350
 
@@ -767,3 +769,6 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = -1
 layer_1/tile_data = PackedInt32Array(-65533, 1048577, 5)
+
+[node name="OOBManager" type="Node2D" parent="."]
+script = ExtResource("5_yro2g")
