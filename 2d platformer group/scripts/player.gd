@@ -49,6 +49,7 @@ func _ready():
 	set_wall_min_slide_angle(0.1)
 	max_slides = 999999
 	floor_stop_on_slope = false
+	velocity.x = 20
 func _physics_process(delta):
 	charge_bar.value = 100*charge/max_jump
 	
@@ -91,12 +92,13 @@ func _physics_process(delta):
 
 	if !is_on_floor():
 		if is_on_wall():
-			velocity.x = -20 * x_direction
+#			velocity.x = -20 * velocity.x
+			x_direction = -x_direction
 			stopped = true
 		if !stopped:
 			velocity.x = x_speed * x_direction
 			if x_speed < 10:
-				x_speed -= air_resistance*x_direction
+				x_speed -= 1*x_direction
 		else: 
 			velocity.x = bounce * -x_direction
 			if bounce < 10:
@@ -110,7 +112,7 @@ func _physics_process(delta):
 	else:
 		charge_bar.visible = false
 
-	if x_direction != 0:
+	if x_direction != 0 and is_on_floor():
 		sprite.flip_h =  (x_direction == -1)
 		sprite.position.x = 6*x_direction
 
