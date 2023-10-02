@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="4_w48a7"]
 [ext_resource type="Script" path="res://scripts/oob.gd" id="5_yro2g"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_cl68h"]
+[sub_resource type="QuadMesh" id="QuadMesh_mh31o"]
 size = Vector2(1000, 100)
 subdivide_depth = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_giw3v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4k1p"]
 size = Vector2(999, 100)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yx2x3"]
@@ -718,7 +718,7 @@ texture = ExtResource("4_w48a7")
 7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:1/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_ouylc"]
+[sub_resource type="TileSet" id="TileSet_m0b0g"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yx2x3")
 sources/1 = SubResource("TileSetAtlasSource_jptrr")
@@ -738,11 +738,11 @@ max_jump = 350
 [node name="MeshInstance2D" type="MeshInstance2D" parent="platform"]
 modulate = Color(0.917647, 0.266667, 0.435294, 1)
 position = Vector2(552, 493)
-mesh = SubResource("QuadMesh_cl68h")
+mesh = SubResource("QuadMesh_mh31o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
 position = Vector2(551, 493)
-shape = SubResource("RectangleShape2D_giw3v")
+shape = SubResource("RectangleShape2D_u4k1p")
 
 [node name="platform2" type="StaticBody2D" parent="."]
 position = Vector2(1111, -184)
@@ -750,14 +750,14 @@ position = Vector2(1111, -184)
 [node name="MeshInstance2D" type="MeshInstance2D" parent="platform2"]
 modulate = Color(0.917647, 0.266667, 0.435294, 1)
 position = Vector2(538, 416)
-mesh = SubResource("QuadMesh_cl68h")
+mesh = SubResource("QuadMesh_mh31o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform2"]
 position = Vector2(537.5, 416)
-shape = SubResource("RectangleShape2D_giw3v")
+shape = SubResource("RectangleShape2D_u4k1p")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_ouylc")
+tile_set = SubResource("TileSet_m0b0g")
 cell_quadrant_size = 128
 collision_animatable = true
 format = 2
