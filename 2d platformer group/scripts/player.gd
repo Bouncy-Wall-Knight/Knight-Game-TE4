@@ -14,12 +14,12 @@
 #		velocity.y += gravity * delta
 #
 #	# Handle Jump.
-#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+#	if Input.is_action_just_pressed("Jump") and is_on_floor():
 #		velocity.y = JUMP_VELOCITY
 #
 #	# Get the input direction and handle the movement/deceleration.
 #	# As good practice, you should replace UI actions with custom gameplay actions.
-#	var direction = Input.get_axis("ui_left", "ui_right")
+#	var direction = Input.get_axis("Move_left", "Move_right")
 #	if direction:
 #		velocity.x = direction * SPEED
 #	else:
@@ -45,43 +45,40 @@ var charge = 0
 var x_direction = 1
 var x_speed = 0
 var stopped = false
+func _ready():
+	set_wall_min_slide_angle(0.1)
+	max_slides = 999999
+	floor_stop_on_slope = false
+	velocity.x = 20
 func _physics_process(delta):
 	charge_bar.value = 100*charge/max_jump
 	
+#	if x_direction != 0:
+#		velocity.x = lerp(velocity.x, float(x_direction * speed), 0.1)
+#	else:
+#		velocity.x = lerp(velocity.x, 0.0, 0.1)
+	
+	
+	if velocity.y < 200:
+		velocity.y += gravity
+	if is_on_floor() and abs(velocity.x) > 0:
+		velocity.y -= 9000
+		print("kos") 
+	print(velocity.x)
+	
+
+	move_and_slide()
 	if is_on_floor():
 		if Input.is_action_just_pressed("Move_left"):
 			x_direction = -1
 		if Input.is_action_just_pressed("Move_right"):
 			x_direction = 1
 		jumps_air = 0
-		velocity.x = 0
+		velocity.x = 0 
 		stopped = false
-	if !is_on_floor():
-		if is_on_wall():
-			velocity.x = -20 * x_direction
-			stopped = true
-		if velocity.y < 200:
-			velocity.y += gravity
-		if !stopped:
-			velocity.x = x_speed * x_direction
-			if x_speed < 10:
-				x_speed -= 1*x_direction
-		else: 
-			velocity.x = bounce * -x_direction
-			if bounce < 10:
-				bounce -= -1*x_direction
-		
-	if hold_jump:
-		charge += jump_force
-		if charge > max_jump:
-			charge = max_jump
-		charge_bar.visible = true
-	else:
-		charge_bar.visible = false
-	if is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			hold_jump = true
-			
+
 		if Input.is_action_just_released("Jump") and hold_jump == true:
 			if Input.is_key_pressed(KEY_SHIFT):
 				velocity.y -= charge*0.6
@@ -91,16 +88,37 @@ func _physics_process(delta):
 				x_speed = speed
 			hold_jump = false
 			charge = min_jump
-			stopped = false
-		
-	if x_direction != 0:
+			stopped = false	
+
+	if !is_on_floor():
+		if is_on_wall():
+#			velocity.x = -20 * velocity.x
+			x_direction = -x_direction
+			stopped = true
+		if !stopped:
+			velocity.x = x_speed * x_direction
+			if x_speed < 10:
+				x_speed -= 1*x_direction
+		else: 
+			velocity.x = bounce * -x_direction
+			if bounce < 10:
+				bounce -= -1*x_direction
+
+	if hold_jump:
+		charge += jump_force
+		if charge > max_jump:
+			charge = max_jump
+		charge_bar.visible = true
+	else:
+		charge_bar.visible = false
+
+	if x_direction != 0 and is_on_floor():
 		sprite.flip_h =  (x_direction == -1)
 		sprite.position.x = 6*x_direction
-	
+
 	update_animations(x_direction)
-	
-	move_and_slide()
-	
+#	move_and_slide()
+
 func update_animations(x_direction):
 	if is_on_floor():
 		if !hold_jump:
