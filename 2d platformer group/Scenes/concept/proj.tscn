@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsa5oer6yfxbt"]
+[gd_scene load_steps=11 format=3 uid="uid://dsa5oer6yfxbt"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_betj2"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_eyfed"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="4_r6dit"]
 [ext_resource type="Script" path="res://scripts/oob.gd" id="5_jhlux"]
 [ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="6_btjmm"]
-[ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="7_mjgx7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yx2x3"]
 texture = ExtResource("2_eyfed")
@@ -763,9 +762,12 @@ scale = Vector2(1, 0.764)
 position = Vector2(629, -796)
 rotation = -0.191506
 scale = Vector2(2, 0.764)
+<<<<<<< HEAD
 
 [node name="trap" parent="." instance=ExtResource("7_mjgx7")]
 position = Vector2(33, -668)
 
 [node name="trap2" parent="." instance=ExtResource("7_mjgx7")]
 position = Vector2(10, -712)
+=======
+>>>>>>> parent of 5b9ad25 (test)

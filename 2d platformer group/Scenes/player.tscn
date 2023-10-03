@@ -1,14 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://df8oosflauk48"]
+[gd_scene load_steps=18 format=3 uid="uid://df8oosflauk48"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_22ioi"]
 [ext_resource type="Texture2D" uid="uid://e7urpujgmpdn" path="res://assests/textures/_Idle.png" id="2_8efs6"]
 [ext_resource type="Texture2D" uid="uid://m4p3wcyenk4b" path="res://assests/textures/_Run.png" id="3_gdu7x"]
-[ext_resource type="PackedScene" path="res://Scenes/CollisionShapes/UpprightCS.tscn" id="3_inrki"]
-[ext_resource type="Shape2D" uid="uid://30yuahvdtw3d" path="res://CollisionShapes/UpprightCS.tres" id="4_ttvum"]
 [ext_resource type="Texture2D" uid="uid://bhwnyuud4jjl7" path="res://assests/textures/_Jump.png" id="4_wnwgq"]
 [ext_resource type="Texture2D" uid="uid://bjxt826opb66c" path="res://assests/textures/_Fall.png" id="5_b5etb"]
 [ext_resource type="Texture2D" uid="uid://df8pp7e5am53p" path="res://assests/textures/_Crouch.png" id="6_01b2q"]
 [ext_resource type="Texture2D" uid="uid://becm5dlxtaj2k" path="res://assests/textures/_SlideTransitionStart.png" id="7_btggj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyceq"]
+radius = 11.5
+height = 48.0
 
 [sub_resource type="Animation" id="Animation_emn8y"]
 length = 0.001
@@ -390,15 +392,15 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Sprite2D:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_he5pe"]
@@ -423,14 +425,15 @@ floor_block_on_wall = false
 script = ExtResource("1_22ioi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(6, 0)
 scale = Vector2(1.10417, 1.2375)
 texture = ExtResource("2_8efs6")
 flip_h = true
 hframes = 10
 
-[node name="CollisionShape2D" parent="." instance=ExtResource("3_inrki")]
-shape = ExtResource("4_ttvum")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 26)
+shape = SubResource("CapsuleShape2D_fyceq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4, 7)

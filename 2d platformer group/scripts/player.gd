@@ -55,9 +55,8 @@ var x_speed = 0
 var stopped = false
 var angle_ray = 0
 var slope_angle = 0
-var start_pos
 func _ready():
-	start_pos = position
+	
 #	last_velocity = velocity
 #	last_pos = position
 	set_wall_min_slide_angle(0.3)
@@ -141,6 +140,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	update_animations(facing_dir)
+<<<<<<< HEAD
 	update_shape()
 #			sprite.position.x = 6 * facing_dir
 
@@ -151,6 +151,8 @@ func _physics_process(delta):
 			position = start_pos
 
 	
+=======
+>>>>>>> parent of 5b9ad25 (test)
 #	last_velocity = velocity
 
 func update_animations(x_direction):
