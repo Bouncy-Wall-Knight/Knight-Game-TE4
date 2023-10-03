@@ -41,9 +41,9 @@ extends CharacterBody2D
 @onready var charge_bar = $charge_bar
 @onready var ray_left = $angle_ray
 @onready var ray_right = $ray_right
-var upp_right_cs = preload("res://CollisionShapes/UpprightCS.tres")
-var crouch_cs = preload("res://CollisionShapes/CrouchCS.tres")
-var slide_cs = preload("res://CollisionShapes/SlideCS.tres")
+#var upp_right_cs = preload("res://CollisionShapes/UpprightCS.tres")
+#var crouch_cs = preload("res://CollisionShapes/CrouchCS.tres")
+#var slide_cs = preload("res://CollisionShapes/SlideCS.tres")
 var last_velocity = Vector2(0,0)
 var last_pos = Vector2(0,0)
 var jumps_air = 1
@@ -55,8 +55,9 @@ var x_speed = 0
 var stopped = false
 var angle_ray = 0
 var slope_angle = 0
+var start_pos
 func _ready():
-	
+	start_pos = position
 #	last_velocity = velocity
 #	last_pos = position
 	set_wall_min_slide_angle(0.3)
@@ -140,7 +141,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	update_animations(facing_dir)
-<<<<<<< HEAD
+
 	update_shape()
 #			sprite.position.x = 6 * facing_dir
 
@@ -151,8 +152,6 @@ func _physics_process(delta):
 			position = start_pos
 
 	
-=======
->>>>>>> parent of 5b9ad25 (test)
 #	last_velocity = velocity
 
 func update_animations(x_direction):
@@ -172,18 +171,19 @@ func update_animations(x_direction):
 			ap.play("fall")
 	
 func update_shape():
-	if is_on_slope():
-		cs2d.shape = slide_cs
-	elif hold_jump:
-		cs2d.shape = crouch_cs
-	else:
-		cs2d.shape = upp_right_cs
-	sprite.position.x = cs2d.position.x
-	if x_direction != 0 and is_on_floor():
-		if is_on_slope():
-			sprite.flip_h = slope_angle < 0
-		else:
-			sprite.flip_h =  (facing_dir == -1)
+	pass
+#	if is_on_slope():
+#		cs2d.shape = slide_cs
+#	elif hold_jump:
+#		cs2d.shape = crouch_cs
+#	else:
+#		cs2d.shape = upp_right_cs
+#	sprite.position.x = cs2d.position.x
+#	if x_direction != 0 and is_on_floor():
+#		if is_on_slope():
+#			sprite.flip_h = slope_angle < 0
+#		else:
+#			sprite.flip_h =  (facing_dir == -1)
 			
 			
 func is_on_slope():

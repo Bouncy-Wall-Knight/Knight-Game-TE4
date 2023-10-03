@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2p2m8nwbp54x"]
+[gd_scene load_steps=17 format=3 uid="uid://ctcamgrittgrn"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_w4l7s"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_aw7g0"]
@@ -744,7 +744,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_w4l7s")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(93, -316)
+position = Vector2(379, -946)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 
@@ -787,7 +787,7 @@ rotation = 0.386923
 scale = Vector2(0.300006, 0.763581)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("6_tbyct")]
-position = Vector2(400, -711)
+position = Vector2(587, -714)
 rotation = -0.191506
 scale = Vector2(2, 0.764)
 
