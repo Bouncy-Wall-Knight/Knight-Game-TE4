@@ -34,16 +34,16 @@ extends CharacterBody2D
 @export var jump_force = 5
 @export var max_jump = 1000
 @export var min_jump = 100
-@export var bounce = 20
+@export var bounce = 0.4
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
-@onready var cs2d = $CollisionShape2D
+@onready var uppright_cs = $UpprightCS2d
+@onready var crouch_cs = $crouchCS2d
+@onready var slide_cs = $SlideCS2d
 @onready var charge_bar = $charge_bar
 @onready var ray_left = $angle_ray
 @onready var ray_right = $ray_right
-#var upp_right_cs = preload("res://CollisionShapes/UpprightCS.tres")
-#var crouch_cs = preload("res://CollisionShapes/CrouchCS.tres")
-#var slide_cs = preload("res://CollisionShapes/SlideCS.tres")
+
 var last_velocity = Vector2(0,0)
 var last_pos = Vector2(0,0)
 var jumps_air = 1
@@ -56,10 +56,12 @@ var stopped = false
 var angle_ray = 0
 var slope_angle = 0
 var start_pos
+var slide_cs_rotation
 func _ready():
 	start_pos = position
-#	last_velocity = velocity
-#	last_pos = position
+	slide_cs.disabled = true
+	crouch_cs.disabled = true
+	slide_cs_rotation = slide_cs.rotation_degrees
 	set_wall_min_slide_angle(0.3)
 #	max_slides = 999999
 #	floor_stop_on_slope = false
@@ -68,36 +70,46 @@ func _ready():
 #	velocity.x = 20
 func _physics_process(delta):
 	angle_ray = (ray_left if ray_right.get_collider() == null else ray_right)
+	
 	charge_bar.value = 100*charge/max_jump
+	
 	velocity.y += gravity
 	if velocity.y > 200:
 		velocity.y = 200
 		
 	if !is_on_slope() and is_on_floor():
 		velocity.x = 0
-	if angle_ray.get_collider() != null and is_on_floor():
-		print(angle_ray.get_collider().rotation)
+		
+	if angle_ray.get_collider() != null and velocity.y > 0:
 		slope_angle = angle_ray.get_collider().rotation
 		velocity.x += slope_angle * 12
-		x_speed = velocity.x * 0.6
-		if abs(velocity.x) > 140:
-			velocity.x = 140 * slope_angle/abs(slope_angle)
+		x_speed = velocity.x
 		
-#	if x_direction != 0:
-#		velocity.x = lerp(velocity.x, float(x_direction * speed), 0.1)
-#	else:
-#		velocity.x = lerp(velocity.x, 0.0, 0.1)
+		if abs(velocity.x) > 180:
+			velocity.x = 180 if velocity.x > 0 else -180
+	
+	if !is_on_floor() and !is_on_slope():
+		if is_on_wall() and (angle_ray or velocity.y > 0):
+#			velocity.x = -20 * velocity.x
+			x_speed = -x_speed
+			x_speed *= bounce
+		else:
+			velocity.x = x_speed
+		
+
 	if is_on_floor() and !is_on_slope():
 		if Input.is_action_just_pressed("Move_left"):
 			x_direction = -1
+			
 		if Input.is_action_just_pressed("Move_right"):
 			x_direction = 1
-		facing_dir = x_direction
 		jumps_air = 0
 		stopped = false
+		
 		if Input.is_action_just_pressed("Jump"):
 			hold_jump = true
-
+			charge = min_jump
+			
 		if Input.is_action_just_released("Jump") and hold_jump == true:
 			if Input.is_key_pressed(KEY_SHIFT):
 				velocity.y -= charge*0.6
@@ -105,25 +117,10 @@ func _physics_process(delta):
 			else:
 				velocity.y -= charge
 				x_speed = speed
-			facing_dir = x_direction
-			gravity = 10
 			hold_jump = false
 			charge = min_jump
 			stopped = false	
 
-	if !is_on_floor() and !is_on_slope():
-		if is_on_wall():
-#			velocity.x = -20 * velocity.x
-			x_direction = -x_direction
-			stopped = true
-		if !stopped:
-			velocity.x = x_speed * x_direction
-			if x_speed < 10:
-				x_speed -= 1*x_direction
-		else: 
-			velocity.x = bounce * -x_direction
-			if bounce < 10:
-				bounce -= -1*x_direction
 
 	if hold_jump:
 		charge += jump_force
@@ -132,18 +129,11 @@ func _physics_process(delta):
 		charge_bar.visible = true
 	else:
 		charge_bar.visible = false
-	print(" ",)
-	
-#	if velocity.x < 0:
-#		x_direction = -1
-#	elif velocity.x > 0:
-#		x_direction = 1
-	
-	move_and_slide()
-	update_animations(facing_dir)
+
+	update_animations()
 
 	update_shape()
-#			sprite.position.x = 6 * facing_dir
+	move_and_slide()
 
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -151,10 +141,8 @@ func _physics_process(delta):
 		if collision.get_collider().get_parent() is Trap:
 			position = start_pos
 
-	
-#	last_velocity = velocity
 
-func update_animations(x_direction):
+func update_animations():
 	if is_on_floor():
 		if is_on_slope():
 			ap.play("slide")
@@ -171,20 +159,23 @@ func update_animations(x_direction):
 			ap.play("fall")
 	
 func update_shape():
-	pass
-#	if is_on_slope():
-#		cs2d.shape = slide_cs
-#	elif hold_jump:
-#		cs2d.shape = crouch_cs
-#	else:
-#		cs2d.shape = upp_right_cs
-#	sprite.position.x = cs2d.position.x
-#	if x_direction != 0 and is_on_floor():
-#		if is_on_slope():
-#			sprite.flip_h = slope_angle < 0
-#		else:
-#			sprite.flip_h =  (facing_dir == -1)
-			
+	var sprite_padding = 6
+	slide_cs.disabled = true
+	crouch_cs.disabled = true
+	uppright_cs.disabled = true
+	slide_cs.rotation = slope_angle
+	if is_on_slope():
+		slide_cs.disabled = false
+		sprite_padding = 3
+	else:
+		uppright_cs.disabled = false
+		sprite_padding = 6
+	if x_direction != 0 and is_on_floor():
+		if is_on_slope():
+			sprite.flip_h = slope_angle < 0
+		else:
+			sprite.flip_h =  (x_direction == -1)
+		sprite.position.x = sprite_padding*x_direction
 			
 func is_on_slope():
 	if angle_ray.get_collider() != null:

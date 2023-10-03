@@ -744,7 +744,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_w4l7s")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(379, -946)
+position = Vector2(428, -784)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 
