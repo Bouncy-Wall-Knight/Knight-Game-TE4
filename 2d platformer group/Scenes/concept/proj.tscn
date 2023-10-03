@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsa5oer6yfxbt"]
+[gd_scene load_steps=11 format=3 uid="uid://dsa5oer6yfxbt"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_betj2"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_eyfed"]
 [ext_resource type="Texture2D" uid="uid://boa3nrm22da0i" path="res://sets/sheet.png" id="3_vcct5"]
 [ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="4_r6dit"]
 [ext_resource type="Script" path="res://scripts/oob.gd" id="5_jhlux"]
+[ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="6_btjmm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yx2x3"]
 texture = ExtResource("2_eyfed")
@@ -722,10 +723,9 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_betj2")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(1121, -150)
+position = Vector2(47, -810)
 scale = Vector2(0.8, 0.572)
-max_jump = 350
-bounce = 100
+motion_mode = 0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m0b0g")
@@ -751,3 +751,13 @@ layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65
 
 [node name="OOBManager" type="Node2D" parent="."]
 script = ExtResource("5_jhlux")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("6_btjmm")]
+position = Vector2(351, -791)
+rotation = 0.386923
+scale = Vector2(0.300006, 0.763581)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("6_btjmm")]
+position = Vector2(400, -711)
+rotation = -0.191506
+scale = Vector2(2, 0.764)
