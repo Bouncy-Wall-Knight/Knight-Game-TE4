@@ -783,13 +783,13 @@ script = ExtResource("5_88bdr")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("6_tbyct")]
 position = Vector2(258, -448)
-rotation = 0.386923
+rotation = 0.523599
 scale = Vector2(0.300006, 0.763581)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("6_tbyct")]
-position = Vector2(587, -714)
-rotation = -0.191506
-scale = Vector2(2, 0.764)
+position = Vector2(570, -668)
+rotation = -0.523599
+scale = Vector2(2, 1.07334)
 
 [node name="trap" parent="." instance=ExtResource("7_r1d7l")]
 position = Vector2(80, -666)

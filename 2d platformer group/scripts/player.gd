@@ -79,11 +79,12 @@ func _physics_process(delta):
 		
 	if angle_ray.get_collider() != null and velocity.y > 0:
 		slope_angle = angle_ray.get_collider().rotation
-		velocity.x += slope_angle * 12
-		x_speed = velocity.x
+		velocity.x += slope_angle * gravity
+		velocity.y += abs(velocity.x * 1.2) 
 		
-		if abs(velocity.x) > 180:
-			velocity.x = 180 if velocity.x > 0 else -180
+		if abs(velocity.x) > 120:
+			velocity.x = 120 if velocity.x > 0 else -120
+		x_speed = velocity.x *0.8
 	
 	if !is_on_floor() and !is_on_slope():
 		if is_on_wall() and (angle_ray.get_collider() == null or velocity.y > 0):
@@ -160,10 +161,12 @@ func update_shape():
 	slide_cs.disabled = true
 	crouch_cs.disabled = true
 	uppright_cs.disabled = true
-	slide_cs.rotation = slope_angle
+	print(rad_to_deg(slide_cs.rotation))
+	sprite.rotation = 0
 	if is_on_slope():
 		slide_cs.disabled = false
-		sprite_padding = 3
+		sprite.rotation = slope_angle
+		sprite_padding = 4/slope_angle
 	else:
 		uppright_cs.disabled = false
 		sprite_padding = 6
@@ -171,9 +174,14 @@ func update_shape():
 	if x_direction != 0 and is_on_floor():
 		if is_on_slope():
 			sprite.flip_h = slope_angle < 0
+
+			if slope_angle < 0:
+				slide_cs.rotation = slope_angle - deg_to_rad(14) * x_direction
+			else:
+				slide_cs.rotation = slope_angle + deg_to_rad(14) * x_direction
 		else:
 			sprite.flip_h =  (x_direction == -1)
-		sprite.position.x = sprite_padding*x_direction
+		sprite.position.x = sprite_padding * x_direction
 			
 func is_on_slope():
 	if angle_ray.get_collider() != null:

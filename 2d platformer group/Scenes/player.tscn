@@ -394,6 +394,7 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(-25, -16)
+scale = Vector2(-1, 1)
 disable_mode = 2
 motion_mode = 1
 floor_stop_on_slope = false
@@ -418,9 +419,10 @@ shape = SubResource("CapsuleShape2D_fyceq")
 
 [node name="SlideCS2d" type="CollisionShape2D" parent="."]
 position = Vector2(4, 37)
-rotation = -0.133522
+rotation = 0.244346
 scale = Vector2(2, 0.524)
 shape = SubResource("CapsuleShape2D_fyceq")
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4, 7)
