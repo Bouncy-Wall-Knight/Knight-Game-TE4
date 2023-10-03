@@ -1,22 +1,45 @@
-extends CharacterBody2D
+@tool
+extends Node2D
 
-@export var speed = 200
-var dir = 1
+const IDLE_DURATION = 0.5
 
-func _physics_process(delta):
-	var is_player = false
-	var collided = false
-	if is_on_wall():
-		collided = true
-		for i in get_slide_collision_count():
-			var collision = get_slide_collision(i)
-			if collision.get_collider().name == "player":
-				is_player = true
-	if !is_player && collided:
-		dir = -dir
-	if dir == 1:
-		set_position(Vector2(position.x + (delta * speed), position.y))
-	else:
-		set_position(Vector2(position.x + -(delta * speed), position.y))
+@export var move_to = Vector2.RIGHT:
+	get:
+		return move_to
+	set(value):
+		if value != move_to:
+			queue_redraw()
+			if tween != null:
+				tween.stop()
+				tween.kill()
+				_init_tween()
+		move_to = value
+			#draw_line(Vector2.ZERO, move_to, Color.GOLD, 1, false)
+			#property_list_changed_notify()
+@export var speed = 50.0
 
-	move_and_slide()
+@onready var platform = $Platform
+@onready var ray = $Ray
+
+var tween: Tween
+
+func _draw():
+	if Engine.is_editor_hint():
+		draw_line(Vector2.ZERO, move_to, Color.GOLD, 1, false)
+
+func _ready():
+	_init_tween()
+
+func _init_tween():
+	var duration = move_to.length() / float(speed * Globals.UNIT_SIZE)
+	if !Engine.is_editor_hint() && tween != null:
+		tween.kill()
+	tween = create_tween()
+	
+	tween.set_loops(0)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(platform, "position", move_to, duration).set_delay(IDLE_DURATION)
+	tween.tween_property(platform, "position", Vector2.ZERO, duration).set_delay(IDLE_DURATION)
+	tween.play()
+

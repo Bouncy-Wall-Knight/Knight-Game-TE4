@@ -753,6 +753,7 @@ layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65
 script = ExtResource("5_8kooj")
 
 [node name="moving_platform" parent="." instance=ExtResource("6_it3wb")]
-position = Vector2(31, -188)
-scale = Vector2(0.425, 0.425)
-motion_mode = 1
+position = Vector2(15, -74)
+
+[node name="moving_platform2" parent="." instance=ExtResource("6_it3wb")]
+position = Vector2(110, -121)
