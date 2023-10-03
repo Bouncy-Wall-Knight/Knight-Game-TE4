@@ -1,16 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2p2m8nwbp54x"]
+[gd_scene load_steps=17 format=3 uid="uid://hkhv261cqmfm"]
 
-[ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_w4l7s"]
-[ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_aw7g0"]
-[ext_resource type="Texture2D" uid="uid://boa3nrm22da0i" path="res://sets/sheet.png" id="3_jyyb2"]
-[ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="4_sjwaj"]
-[ext_resource type="Script" path="res://scripts/oob.gd" id="5_88bdr"]
-[ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="6_tbyct"]
-[ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="7_r1d7l"]
-[ext_resource type="Shader" path="res://shaders/drugged.gdshader" id="8_k7xrw"]
+[ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_xg2ba"]
+[ext_resource type="Shader" path="res://shaders/drugged.gdshader" id="2_g8cyf"]
+[ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="3_yose2"]
+[ext_resource type="Texture2D" uid="uid://boa3nrm22da0i" path="res://sets/sheet.png" id="4_wai3p"]
+[ext_resource type="Texture2D" uid="uid://dpwy0gxmi7xc" path="res://sets/swoosh.png" id="5_qf24u"]
+[ext_resource type="Script" path="res://scripts/oob.gd" id="6_xmhh4"]
+[ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="7_e2vv4"]
+[ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="8_dgv4f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3po5"]
-shader = ExtResource("8_k7xrw")
+shader = ExtResource("2_g8cyf")
 
 [sub_resource type="Gradient" id="Gradient_mec53"]
 offsets = PackedFloat32Array(0, 0.232258, 0.470968, 0.754839, 0.954839, 1)
@@ -29,7 +29,7 @@ color_ramp = SubResource("Gradient_mec53")
 noise = SubResource("FastNoiseLite_hitjy")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yx2x3"]
-texture = ExtResource("2_aw7g0")
+texture = ExtResource("3_yose2")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -327,7 +327,7 @@ texture = ExtResource("2_aw7g0")
 0:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptrr"]
-texture = ExtResource("3_jyyb2")
+texture = ExtResource("4_wai3p")
 0:0/0 = 0
 0:0/0/z_index = -1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -687,7 +687,7 @@ texture = ExtResource("3_jyyb2")
 5:7/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yp6e"]
-texture = ExtResource("4_sjwaj")
+texture = ExtResource("5_qf24u")
 1:0/0 = 0
 1:0/0/z_index = -1
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -741,10 +741,10 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 
 [node name="World" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_w4l7s")]
+[node name="player" parent="." instance=ExtResource("1_xg2ba")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(428, -784)
+position = Vector2(379, -946)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 
@@ -779,22 +779,22 @@ layer_2/z_index = -1
 layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65531, 720897, 5, -196602, 786433, 4, -196601, 786433, 4, -1572865, 851969, 4, -1507329, 851969, 5, -1441793, 851969, 5, -1376257, 851969, 5, -1310721, 851969, 5, -1245185, 851969, 5, -1179649, 589825, 5, -1245184, 851969, 4, -1179648, 851969, 5, -1114112, 851969, 5, -1048576, 851969, 6, -983041, 786433, 6, -983042, 786433, 6, -983043, 786433, 6, -983044, 720897, 6, -983045, 851969, 5, -917509, 851969, 5, -1048580, 720897, 5, -1114116, 720897, 5, -1179652, 720897, 5, -1245188, 720897, 5, -1048581, 589825, 4, -851973, 851969, 6, -1310724, 655361, 4, -1310725, 786433, 6, -1572866, 589825, 5, -1638402, 851969, 5, -1703938, 851969, 5, -1769474, 851969, 5, -1835010, 851969, 5, -1900546, 589825, 4, -1900545, 786433, 6, -1966080, 786433, 6, -1966079, 786433, 6, -1966078, 786433, 6, -1966077, 786433, 6, -1966076, 786433, 6, -1966075, 786433, 6, -1966074, 786433, 6, -1966073, 786433, 6, -2228222, 851969, 4, -2162686, 851969, 5, -2097150, 851969, 5, -2031614, 589825, 5, -2031613, 786433, 4, -2031612, 786433, 4, -2031611, 786433, 4, -2097146, 720897, 5, -2162682, 720897, 4, -2162681, 786433, 4, -2031610, 655361, 5, -2228224, 720897, 4, -2228223, 786433, 4, -2097151, 851969, 6, -2097152, 589825, 4, -2031616, 851969, 6, -1966081, 786433, 6, -1966082, 786433, 6, -1966083, 786433, 6, -1966084, 786433, 6, -1966085, 720897, 6, -2031621, 720897, 5, -2097157, 720897, 5, -2162693, 720897, 5, -2228229, 720897, 5, -2293765, 655361, 4)
 
 [node name="OOBManager" type="Node2D" parent="."]
-script = ExtResource("5_88bdr")
+script = ExtResource("6_xmhh4")
 
-[node name="StaticBody2D" parent="." instance=ExtResource("6_tbyct")]
+[node name="StaticBody2D" parent="." instance=ExtResource("7_e2vv4")]
 position = Vector2(258, -448)
 rotation = 0.386923
 scale = Vector2(0.300006, 0.763581)
 
-[node name="StaticBody2D2" parent="." instance=ExtResource("6_tbyct")]
+[node name="StaticBody2D2" parent="." instance=ExtResource("7_e2vv4")]
 position = Vector2(587, -714)
 rotation = -0.191506
 scale = Vector2(2, 0.764)
 
-[node name="trap" parent="." instance=ExtResource("7_r1d7l")]
+[node name="trap" parent="." instance=ExtResource("8_dgv4f")]
 position = Vector2(80, -666)
 
-[node name="trap2" parent="." instance=ExtResource("7_r1d7l")]
+[node name="trap2" parent="." instance=ExtResource("8_dgv4f")]
 position = Vector2(10, -712)
 
 [node name="backup" type="Sprite2D" parent="."]
