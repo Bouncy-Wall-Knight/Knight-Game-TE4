@@ -724,9 +724,10 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_betj2")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(47, -810)
+position = Vector2(245, -938)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
+gravity = 40
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m0b0g")
@@ -754,17 +755,17 @@ layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65
 script = ExtResource("5_jhlux")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("6_btjmm")]
-position = Vector2(351, -791)
+position = Vector2(228, -889)
 rotation = 0.386923
-scale = Vector2(0.300006, 0.763581)
+scale = Vector2(1, 0.764)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("6_btjmm")]
-position = Vector2(400, -711)
+position = Vector2(629, -796)
 rotation = -0.191506
 scale = Vector2(2, 0.764)
 
 [node name="trap" parent="." instance=ExtResource("7_mjgx7")]
-position = Vector2(80, -666)
+position = Vector2(33, -668)
 
 [node name="trap2" parent="." instance=ExtResource("7_mjgx7")]
 position = Vector2(10, -712)
