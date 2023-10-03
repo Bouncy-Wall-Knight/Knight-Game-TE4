@@ -52,8 +52,9 @@ var x_speed = 0
 var stopped = false
 var angle_ray = 0
 var slope_angle = 0
+var start_pos
 func _ready():
-	
+	start_pos = position
 #	last_velocity = velocity
 #	last_pos = position
 	set_wall_min_slide_angle(0.3)
@@ -136,6 +137,13 @@ func _physics_process(delta):
 			sprite.flip_h =  (facing_dir == -1)
 			sprite.position.x = 6*facing_dir
 	update_animations(facing_dir)
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+
+		if collision.get_collider().get_parent() is Trap:
+			position = start_pos
+
+	
 #	last_velocity = velocity
 
 func update_animations(x_direction):
