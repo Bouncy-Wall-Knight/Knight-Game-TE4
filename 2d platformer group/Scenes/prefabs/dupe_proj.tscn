@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2p2m8nwbp54x"]
+[gd_scene load_steps=17 format=3 uid="uid://ctcamgrittgrn"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_w4l7s"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_aw7g0"]

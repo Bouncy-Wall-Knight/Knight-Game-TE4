@@ -57,17 +57,14 @@ var angle_ray = 0
 var slope_angle = 0
 var start_pos
 var slide_cs_rotation
+
 func _ready():
 	start_pos = position
 	slide_cs.disabled = true
 	crouch_cs.disabled = true
 	slide_cs_rotation = slide_cs.rotation_degrees
 	set_wall_min_slide_angle(0.3)
-#	max_slides = 999999
-#	floor_stop_on_slope = false
-#	floor_constant_speed = false
-#	set_floor_snap_length(0.7)
-#	velocity.x = 20
+	
 func _physics_process(delta):
 	angle_ray = (ray_left if ray_right.get_collider() == null else ray_right)
 	
@@ -89,12 +86,14 @@ func _physics_process(delta):
 			velocity.x = 180 if velocity.x > 0 else -180
 	
 	if !is_on_floor() and !is_on_slope():
-		if is_on_wall() and (angle_ray or velocity.y > 0):
+		if is_on_wall() and (angle_ray.get_collider() == null or velocity.y > 0):
 #			velocity.x = -20 * velocity.x
 			x_speed = -x_speed
 			x_speed *= bounce
-		else:
-			velocity.x = x_speed
+
+
+	
+		velocity.x = x_speed
 		
 
 	if is_on_floor() and !is_on_slope():
@@ -113,10 +112,10 @@ func _physics_process(delta):
 		if Input.is_action_just_released("Jump") and hold_jump == true:
 			if Input.is_key_pressed(KEY_SHIFT):
 				velocity.y -= charge*0.6
-				x_speed = speed * 2
+				x_speed = speed * 2 * x_direction
 			else:
 				velocity.y -= charge
-				x_speed = speed
+				x_speed = speed * x_direction
 			hold_jump = false
 			charge = min_jump
 			stopped = false	
@@ -131,13 +130,11 @@ func _physics_process(delta):
 		charge_bar.visible = false
 
 	update_animations()
-
 	update_shape()
 	move_and_slide()
 
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-
 		if collision.get_collider().get_parent() is Trap:
 			position = start_pos
 
@@ -170,6 +167,7 @@ func update_shape():
 	else:
 		uppright_cs.disabled = false
 		sprite_padding = 6
+		
 	if x_direction != 0 and is_on_floor():
 		if is_on_slope():
 			sprite.flip_h = slope_angle < 0
