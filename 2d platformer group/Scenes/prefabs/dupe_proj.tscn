@@ -744,7 +744,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_w4l7s")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(428, -784)
+position = Vector2(436, -1145)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 
@@ -782,14 +782,14 @@ layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65
 script = ExtResource("5_88bdr")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("6_tbyct")]
-position = Vector2(258, -448)
-rotation = 0.386923
-scale = Vector2(0.300006, 0.763581)
+position = Vector2(133, -892)
+rotation = 0.762709
+scale = Vector2(2, 0.764)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("6_tbyct")]
-position = Vector2(587, -714)
-rotation = -0.191506
-scale = Vector2(2, 0.764)
+position = Vector2(628, -846)
+rotation = -0.164061
+scale = Vector2(2, 1.07334)
 
 [node name="trap" parent="." instance=ExtResource("7_r1d7l")]
 position = Vector2(80, -666)
@@ -803,3 +803,15 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_s3po5")
 position = Vector2(46, -193)
 texture = SubResource("NoiseTexture2D_4w5vj")
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("6_tbyct")]
+position = Vector2(638, -1131)
+rotation = -0.523599
+scale = Vector2(2, 1.07334)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("6_tbyct")]
+modulate = Color(0.105882, 0.160784, 1, 1)
+self_modulate = Color(0.478431, 0.156863, 0.466667, 1)
+position = Vector2(61, -1039)
+rotation = 0.523599
+scale = Vector2(2, 0.764)

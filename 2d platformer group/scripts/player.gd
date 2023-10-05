@@ -71,28 +71,27 @@ func _physics_process(delta):
 	charge_bar.value = 100*charge/max_jump
 	
 	velocity.y += gravity
-	if velocity.y > 200:
-		velocity.y = 200
+
 		
 	if !is_on_slope() and is_on_floor():
 		velocity.x = 0
 		
-	if angle_ray.get_collider() != null and velocity.y > 0:
-		slope_angle = angle_ray.get_collider().rotation
-		velocity.x += slope_angle * 12
-		x_speed = velocity.x
+	if is_on_slope() and velocity.y > 0:
 		
-		if abs(velocity.x) > 180:
-			velocity.x = 180 if velocity.x > 0 else -180
+		slope_angle = angle_ray.get_collider().rotation
+		velocity.x += slope_angle * gravity
+		velocity.y += abs(velocity.x * 1.2) 
+		
+		if abs(velocity.x) > 120:
+			velocity.x = 120 if velocity.x > 0 else -120
+		x_speed = velocity.x * 0.8
 	
 	if !is_on_floor() and !is_on_slope():
 		if is_on_wall() and (angle_ray.get_collider() == null or velocity.y > 0):
 #			velocity.x = -20 * velocity.x
 			x_speed = -x_speed
 			x_speed *= bounce
-
-
-	
+#			x_direction = -x_direction
 		velocity.x = x_speed
 		
 
@@ -128,15 +127,17 @@ func _physics_process(delta):
 		charge_bar.visible = true
 	else:
 		charge_bar.visible = false
-
+	print(" ",velocity, is_on_slope())
+	if velocity.y > 200:
+		velocity.y = 200
 	update_animations()
 	update_shape()
 	move_and_slide()
 
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().get_parent() is Trap:
-			position = start_pos
+#	for i in get_slide_collision_count():
+#		var collision = get_slide_collision(i)
+#		if collision.get_collider().get_parent() is Trap:
+#			position = start_pos
 
 
 func update_animations():
@@ -160,20 +161,26 @@ func update_shape():
 	slide_cs.disabled = true
 	crouch_cs.disabled = true
 	uppright_cs.disabled = true
-	slide_cs.rotation = slope_angle
-	if is_on_slope():
+
+	if is_on_slope() and is_on_floor():
 		slide_cs.disabled = false
-		sprite_padding = 3
+#		sprite.rotation = slope_angle
+		rotation = slope_angle
+		sprite_padding = 0
 	else:
 		uppright_cs.disabled = false
 		sprite_padding = 6
-		
+		rotation = 0
 	if x_direction != 0 and is_on_floor():
 		if is_on_slope():
 			sprite.flip_h = slope_angle < 0
+			if slope_angle < 0:
+				slide_cs.rotation = -deg_to_rad(10) * x_direction
+			else:
+				slide_cs.rotation = deg_to_rad(10) * x_direction
 		else:
-			sprite.flip_h =  (x_direction == -1)
-		sprite.position.x = sprite_padding*x_direction
+			sprite.flip_h = (x_direction == -1)
+			sprite.position.x = sprite_padding * x_direction
 			
 func is_on_slope():
 	if angle_ray.get_collider() != null:
