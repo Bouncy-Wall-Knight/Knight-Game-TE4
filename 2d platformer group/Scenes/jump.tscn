@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhlbw15o7xue6"]
+
+[ext_resource type="Script" path="res://scripts/PlayerSFX.gd" id="2_dsfbj"]
+[ext_resource type="AudioStream" uid="uid://dmcwxiglm3pn" path="res://audio/thud3.wav" id="3_gvspl"]
+[ext_resource type="AudioStream" uid="uid://bt5lyxs1cd63v" path="res://audio/jumpland1.wav" id="3_t1ouv"]
+
+[node name="Jump" type="AudioStreamPlayer2D"]
+stream = ExtResource("3_t1ouv")
+max_polyphony = 3
+script = ExtResource("2_dsfbj")
+
+[node name="Land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gvspl")
+max_polyphony = 3

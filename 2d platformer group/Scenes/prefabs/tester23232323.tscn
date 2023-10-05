@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://i64rpnrfv85b"]
+[gd_scene load_steps=19 format=3 uid="uid://i64rpnrfv85b"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_x6qto"]
 [ext_resource type="Shader" path="res://shaders/drugged.gdshader" id="2_y37hn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="7_ck3er"]
 [ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="8_cusal"]
 [ext_resource type="Script" path="res://scripts/save_manager.gd" id="9_3ha8i"]
+[ext_resource type="PackedScene" uid="uid://bhlbw15o7xue6" path="res://Scenes/jump.tscn" id="10_sl7cq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3po5"]
 shader = ExtResource("2_y37hn")
@@ -756,6 +757,10 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_s3po5")
 scale = Vector2(1.25, 1.74825)
 texture = SubResource("NoiseTexture2D_4w5vj")
+
+[node name="Jump" parent="player" instance=ExtResource("10_sl7cq")]
+position = Vector2(-535, 1370.63)
+scale = Vector2(1.25, 1.74825)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m0b0g")
