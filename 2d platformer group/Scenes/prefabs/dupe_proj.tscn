@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctcamgrittgrn"]
+[gd_scene load_steps=18 format=3 uid="uid://ctcamgrittgrn"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_w4l7s"]
 [ext_resource type="Texture2D" uid="uid://bm1h6y4eq1fif" path="res://sets/characters.png" id="2_aw7g0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="6_tbyct"]
 [ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="7_r1d7l"]
 [ext_resource type="Shader" path="res://shaders/drugged.gdshader" id="8_k7xrw"]
+[ext_resource type="PackedScene" uid="uid://b0dcnb06k153i" path="res://Scenes/sign.tscn" id="9_h1bny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3po5"]
 shader = ExtResource("8_k7xrw")
@@ -744,7 +745,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_w4l7s")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(436, -1145)
+position = Vector2(441, -1110)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 
@@ -782,8 +783,8 @@ layer_2/tile_data = PackedInt32Array(-196603, 720897, 4, -131067, 720897, 5, -65
 script = ExtResource("5_88bdr")
 
 [node name="StaticBody2D" parent="." instance=ExtResource("6_tbyct")]
-position = Vector2(133, -892)
-rotation = 0.762709
+position = Vector2(97, -864)
+rotation = 0.883137
 scale = Vector2(2, 0.764)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("6_tbyct")]
@@ -815,3 +816,7 @@ self_modulate = Color(0.478431, 0.156863, 0.466667, 1)
 position = Vector2(61, -1039)
 rotation = 0.523599
 scale = Vector2(2, 0.764)
+
+[node name="sign" parent="." instance=ExtResource("9_h1bny")]
+position = Vector2(21, -210)
+text = "koss"

@@ -28,6 +28,8 @@
 #	move_and_slide()
 extends CharacterBody2D
 
+class_name Player
+
 @export var speed = 50
 @export var air_resistance = 10
 @export var gravity =  10
@@ -63,7 +65,7 @@ func _ready():
 	slide_cs.disabled = true
 	crouch_cs.disabled = true
 	slide_cs_rotation = slide_cs.rotation_degrees
-	set_wall_min_slide_angle(0.3)
+	set_wall_min_slide_angle(0.1)
 	
 func _physics_process(delta):
 	angle_ray = (ray_left if ray_right.get_collider() == null else ray_right)
@@ -127,7 +129,7 @@ func _physics_process(delta):
 		charge_bar.visible = true
 	else:
 		charge_bar.visible = false
-	print(" ",velocity, is_on_slope())
+
 	if velocity.y > 200:
 		velocity.y = 200
 	update_animations()
