@@ -13,7 +13,7 @@ func _ready():
 #	var speaces = text.count("//")
 	label.text = text.replace("//","\n")
 	print(label.size.y)
-	panel.size.y = 50 if label.size.y < panel.size.y - 10  else label.size.y + 10
+	panel.size.y = 50 if label.size.y < panel.size.y - 10  else label.size.y -10
 	panel.position.y -= panel.size.y - 50
 	button.position.y = panel.position.y + panel.size.y + 20
 #	panel.size.x = 60 if label.size.x < 50 else label.size.x + 22

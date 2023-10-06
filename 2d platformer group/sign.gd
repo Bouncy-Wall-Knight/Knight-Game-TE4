@@ -4,12 +4,13 @@ class_name Sign
 @onready var label = $Panel/Label
 @onready var panel = $Panel
 @export var text = "text"
+@export var height = 50
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	label.text = text.replace("//"," ")
+	label.text = text.replace("//","\n")
 	print(label.size.y)
-	panel.size.y = 50 if label.size.y < panel.size.y - 10  else label.size.y + 10
-	panel.position.y -= panel.size.y - 50
+	panel.size.y = height
+	panel.position.y -= height - 50
 	panel.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame

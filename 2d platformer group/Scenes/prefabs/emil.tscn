@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwldikh2a7b4f"]
+[gd_scene load_steps=20 format=3 uid="uid://cwldikh2a7b4f"]
 
 [ext_resource type="PackedScene" uid="uid://df8oosflauk48" path="res://Scenes/player.tscn" id="1_xhh5j"]
 [ext_resource type="Shader" path="res://shaders/drugged.gdshader" id="2_qadai"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://scripts/oob.gd" id="6_u6jgh"]
 [ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="8_ft6sq"]
 [ext_resource type="PackedScene" uid="uid://bm66bb4cwrcwq" path="res://Scenes/prefabs/moving_platform.tscn" id="9_c6ped"]
+[ext_resource type="PackedScene" uid="uid://d0psox3wgmwws" path="res://Scenes/prefabs/chest.tscn" id="9_jf5dl"]
+[ext_resource type="PackedScene" uid="uid://b0dcnb06k153i" path="res://Scenes/prefabs/sign.tscn" id="10_g4xed"]
+[ext_resource type="Script" path="res://scripts/save_manager.gd" id="11_ll2jk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3po5"]
 shader = ExtResource("2_qadai")
@@ -779,7 +782,7 @@ sources/2 = SubResource("TileSetAtlasSource_3yp6e")
 [node name="player" parent="." instance=ExtResource("1_xhh5j")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(25, -28)
+position = Vector2(76, -134)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
 max_jump = 400
@@ -905,3 +908,23 @@ position = Vector2(219, -2424)
 
 [node name="trap2" parent="traps" instance=ExtResource("8_ft6sq")]
 position = Vector2(236, -2440)
+
+[node name="chest" parent="." instance=ExtResource("9_jf5dl")]
+position = Vector2(915, -4895)
+text = "You serch the chest but find no snus. insead you find a note with the message \"your snus is in another castle\""
+
+[node name="sign" parent="." instance=ExtResource("10_g4xed")]
+position = Vector2(-142, -111)
+text = "Controlls//Hold SPACE to charge your jump and release to jump hold SHIFT while releasing to do a horizontal jump. Use A and D to turn"
+height = 70
+
+[node name="sign2" parent="." instance=ExtResource("10_g4xed")]
+position = Vector2(-20, -208)
+text = "Last night you forgot your snusdosa at the top of the world."
+
+[node name="sign3" parent="." instance=ExtResource("10_g4xed")]
+position = Vector2(-73, -159)
+text = "You could really go for a snus right now"
+
+[node name="SaveManager" type="Node" parent="."]
+script = ExtResource("11_ll2jk")
