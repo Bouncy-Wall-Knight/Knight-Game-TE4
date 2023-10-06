@@ -749,6 +749,7 @@ z_index = 1
 position = Vector2(428, -784)
 scale = Vector2(0.8, 0.572)
 motion_mode = 0
+max_jump = 400
 
 [node name="Sprite2D2" type="Sprite2D" parent="player"]
 visible = false
