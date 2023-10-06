@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhlbw15o7xue6"]
+[gd_scene load_steps=4 format=3 uid="uid://dp5s24smng6vs"]
 
 [ext_resource type="Script" path="res://scripts/PlayerSFX.gd" id="2_dsfbj"]
 [ext_resource type="AudioStream" uid="uid://dmcwxiglm3pn" path="res://audio/thud3.wav" id="3_gvspl"]

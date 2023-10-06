@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b8wigxfy1nu8t" path="res://Scenes/platform.tscn" id="7_ck3er"]
 [ext_resource type="PackedScene" uid="uid://cei263nlfs7xo" path="res://Scenes/prefabs/trap.tscn" id="8_cusal"]
 [ext_resource type="Script" path="res://scripts/save_manager.gd" id="9_3ha8i"]
-[ext_resource type="PackedScene" uid="uid://bhlbw15o7xue6" path="res://Scenes/jump.tscn" id="10_sl7cq"]
+[ext_resource type="PackedScene" uid="uid://dp5s24smng6vs" path="res://Scenes/jump.tscn" id="10_sl7cq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3po5"]
 shader = ExtResource("2_y37hn")
