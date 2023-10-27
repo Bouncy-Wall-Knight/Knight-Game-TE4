@@ -1,0 +1,63 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://ds2jea5hy8awd"]
+
+[ext_resource type="Texture2D" uid="uid://0x3vnptcargw" path="res://icon.svg" id="1_8b0m1"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0xy1l"]
+texture = ExtResource("1_8b0m1")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4gdfr"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_iixog"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_53tb5"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fxb5b"]
+input_name = "time"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// Input:4
+	vec2 n_out4p0 = UV;
+
+
+// Input:7
+	float n_out7p0 = TIME;
+
+
+// VectorOp:6
+	vec3 n_out6p0 = vec3(n_out4p0, 0.0) + vec3(n_out7p0);
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, vec2(n_out6p0.xy));
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out2p0.xyz);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(300, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_0xy1l")
+nodes/fragment/2/position = Vector2(-200, 280)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_4gdfr")
+nodes/fragment/4/position = Vector2(-700, 300)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatConstant_iixog")
+nodes/fragment/5/position = Vector2(-700, 380)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_53tb5")
+nodes/fragment/6/position = Vector2(-381.217, 473.736)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_fxb5b")
+nodes/fragment/7/position = Vector2(-860, 520)
+nodes/fragment/connections = PackedInt32Array(4, 0, 6, 0, 6, 0, 2, 0, 2, 0, 0, 0, 7, 0, 6, 1)
