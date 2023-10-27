@@ -1,4 +1,4 @@
-![Static Badge](https://img.shields.io/badge/any%20text-you%20like-blue)
+![Static Badge](https://img.shields.io/badge/build-release-blue?logo=github)
 # Knight-Game-TE4
 
 A game about a jumping knight
